@@ -1,6 +1,9 @@
 title: $:/plugins/sq/sites/common/templates/globals
 tags: $:/tags/site-template
 
+\function siteId() [<site>!is[blank]] :else[{!!siteId}]
+\function siteTiddler() [all[shadows+tiddlers]tag[$:/tags/site-config]siteId<siteId>]
+
 \function page.value(field) [<pageTiddler>get<field>]
 \function site.value(field) [<siteTiddler>get<field>]
 \function .value(field) [<pageTiddler>get<field>!is[blank]] :else[<siteTiddler>get<field>!is[blank]] 

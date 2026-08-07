@@ -1,12 +1,9 @@
-title: $$:/plugins/sq/sites/common/templates/sitemap
+title: $:/plugins/sq/sites/common/templates/sitemap
 tags: $:/tags/site-template
 
 \import [[$:/plugins/sq/sites/common/templates/globals]]
 \whitespace trim
 
-<$let
-  siteTiddler={{{ [all[shadows+tiddlers]tag[$:/tags/site-config]siteId<siteId>] }}}
-  >
 `<?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 `
@@ -17,4 +14,3 @@ tags: $:/tags/site-template
 `
 </$list>
 `</urlset>`
-</$let>

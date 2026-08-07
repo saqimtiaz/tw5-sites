@@ -5,8 +5,6 @@ tags: $:/tags/site-template
 \whitespace trim
 <$let
   pageTiddler=<<currentTiddler>>
-  siteId={{!!siteId}}
-  siteTiddler={{{ [all[shadows+tiddlers]tag[$:/tags/site-config]siteId<siteId>] }}}
   >`<!DOCTYPE html>
 <html lang="`<<page.value language>>`">
 ` {{ ||$:/plugins/sq/sites/common/templates/head}}`
