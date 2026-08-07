@@ -1,0 +1,22 @@
+title: $:/plugins/sq/sites/common/templates/robots.txt
+tags: $:/tags/site-template
+
+\import [[$:/plugins/sq/sites/common/templates/globals]]
+\whitespace trim
+<$let
+  siteTiddler={{{ [all[shadows+tiddlers]tag[$:/tags/site-config]siteId<siteId>] }}}
+  >
+`User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+Sitemap: `{{{ [<site.value domain>trim[/]addsuffix[/sitemap.xml]] }}}
+</$let>
