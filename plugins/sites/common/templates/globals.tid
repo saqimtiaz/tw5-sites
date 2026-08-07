@@ -1,0 +1,30 @@
+title: $:/plugins/sq/sites/common/templates/globals
+tags: $:/tags/site-template
+
+\function page.value(field) [<pageTiddler>get<field>]
+\function site.value(field) [<siteTiddler>get<field>]
+\function .value(field) [<pageTiddler>get<field>!is[blank]] :else[<siteTiddler>get<field>!is[blank]] 
+
+\function canonical.url() [<site.value domain>] [<page.value path>!is[blank]] :and[trim[/]join[/]trim:suffix[/]addsuffix[/]]
+
+\function root.url() [[/]] [<page.value language>!match<site.value languageDefault>!is[blank]] :then[<site.value languageDefault>addprefix[/]addsuffic[/]] :else[[/]]
+
+\function .locale(lang) [all[shadows+tiddlers]tag[$:/tags/site-language]language<lang>get[locale]]
+
+\function locale.alt() [enlist<site.value languages>!match<page.value language>] :map[.locale<currentTiddler>]
+
+\function intersects.with(token) [all[]] :filter[<currentTiddler>match<token>]
+\function .translations() [all[shadows+tiddlers]tag[$:/tags/site-page]siteId<siteId>pageId<page.value pageId>] :filter[enlist<site.value languages>intersects.with{!!language}]
+
+\function get.translation() [(.translations)!language<page.value language>]
+
+\function .quote() [addprefix["]addsuffix["]]
+
+\procedure nav-link(path,text)
+\whitespace trim
+<%if [<path>match<page.value path>] %>
+  `<a href="`<<path>>`" aria-current="page" class="active">`<$text text=<<text>>/>`</a>`
+<%else%>
+  `<a href="`<<path>>`" >`<$text text=<<text>>/>`</a>`
+<%endif%>
+\end nav-link

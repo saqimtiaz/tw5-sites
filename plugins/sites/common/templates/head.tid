@@ -1,0 +1,92 @@
+title: $:/plugins/sq/sites/common/templates/head
+tags: $:/tags/site-template/common
+
+\whitespace trim
+`  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>`<<.value pageTitle>>`</title>
+    <meta name="description" content="`<<.value description>>`" />
+    <meta name="author" content="`<<.value author>>`" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="`<<.value themeColor>>`" />
+    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="favicon.png" type="image/png" sizes="96x96">
+    <link rel="canonical" href="`<<canonical.url>>`" />
+    `<$list filter="[(.translations)]" variable="pageTiddler">
+    `<link rel="alternate" hreflang="`<<page.value language>>`" href="`<<canonical.url>>`" />
+    `</$list>
+    `<link rel="alternate" hreflang="x-default" href="`{{{[(.translations)language<site.value languageDefault>] =>pageTiddler [<canonical.url>]}}}`" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="`<<site.value name>>`" />
+    <meta property="og:title" content="`<<.value pageTitle>>`" />
+    <meta property="og:description" content="`<<.value description>>`" />
+    <meta property="og:url" content="`<<canonical.url>>`" />
+    <meta property="og:image" content="`<<site.value domain>><<site.value ogImage>>`" />
+    <meta property="og:image:alt" content="`<<site.value ogImageAlt>>`" />
+    <meta property="og:locale" content="`<<.locale lang=<<page.value language>> >>`" />
+    <meta property="og:locale:alternate" content="`<<locale.alt>>`" />
+    <meta property="og:image:width" content="`<<site.value ogImageWidth>>`" />
+    <meta property="og:image:height" content="`<<site.value ogImageHeight>>`" />
+    <meta property="og:image:type" content="`<<site.value ogImageType>>`" />
+    <!-- Social sharing -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="`<<site.value pageTitle>>`" />
+    <meta name="twitter:description" content="`<<site.value description>>`" />
+    <meta name="twitter:image" content="`<<site.value domain>><<site.value ogImage>>`" />
+        
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Winery",
+        "name": "`<<site.value name>>`",
+        "description": "`<<site.value description>>`",
+        "url": "`<<canonical.url>>`",
+        "image": "`<<site.value domain>><<site.value ogImage>>`",
+        "telephone": "`<<site.value phone>>`",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "`<<site.value addressLocality>>`",
+          "addressRegion": "`<<site.value addressRegion>>`",
+          "addressCountry": "`<<site.value addressCountry>>`"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": `<<site.value latitude>>`,
+          "longitude": `<<site.value longitude>>`
+        },
+        "founder": {
+          "@type": "Person",
+          "name": "`<<site.value author>>`"
+        },
+        "knowsAbout": [
+          `{{{ [enlist<site.value knowsAbout>.quote[]join[, ]] }}}`
+        ],
+        "servesCuisine": [
+          `{{{ [enlist<site.value servesCuisine>.quote[]join[, ]] }}}`
+        ],
+        "sameAs": [
+          "`<<site.value instagram>>`"
+        ]
+      }
+    </script>`
+    <%if [<site.value headMarkupTiddler>!is[blank]] %>
+        <$transclude $tiddler=<<site.value headMarkupTiddler>> $mode="block" $output="text/plain"/>
+    <%endif%>
+    <%if [<page.value headMarkupTiddler>!is[blank]] %>
+        <$transclude $tiddler=<<page.value headMarkupTiddler>> $mode="block" $output="text/plain"/>
+    <%endif%>
+    <$list filter="[enlist<site.value stylesheets>]">
+    `<link rel="stylesheet" href="`<$text text=<<currentTiddler>> />`" />
+    `</$list>
+    <$list filter="[enlist<page.value stylesheets>]">
+    `<link rel="stylesheet" href="`<$text text=<<currentTiddler>> />`" />
+    `</$list>
+    <$list filter="[enlist<site.value scripts>]">
+    `<script src="`<$text text=<<currentTiddler>> />`" defer></script>`
+    </$list>
+    <$list filter="[enlist<page.value scripts>]">
+    `<script src="`<$text text=<<currentTiddler>> />`" defer></script>`
+    </$list>`
+  </head>`

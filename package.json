@@ -1,0 +1,15 @@
+{
+  "name": "tw5-sites",
+  "version": "1.0.0",
+  "description": "A framework for rendering static sites from TiddlyWiki.",
+  "keywords": [
+    "TW5",
+    "TiddlyWiki",
+    "plugins"
+  ],
+  "author": "Saq Imtiaz",
+  "dependencies": {
+    "tiddlywiki": "github:Jermolene/TiddlyWiki5"
+  },
+  "license": "MIT"
+}

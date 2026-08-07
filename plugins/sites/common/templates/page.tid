@@ -1,0 +1,34 @@
+title: $:/plugins/sq/sites/common/page
+tags: $:/tags/site-template
+
+\import [[$:/plugins/sq/sites/common/templates/globals]]
+\whitespace trim
+<$let
+  pageTiddler=<<currentTiddler>>
+  siteId={{!!siteId}}
+  siteTiddler={{{ [all[shadows+tiddlers]tag[$:/tags/site-config]siteId<siteId>] }}}
+  >`<!DOCTYPE html>
+<html lang="`<<page.value language>>`">
+` {{ ||$:/plugins/sq/sites/common/templates/head}}`
+  <body>
+` <$transclude $tiddler=<<site.value headerTemplate>> $mode="block" $output="text/plain"/>`
+    <main id="content">
+`       <$transclude $tiddler={{{ [<page.value template>!is[blank]else<pageTiddler>] }}} $mode="block" $output="text/plain"/>
+`    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+`       <$transclude $tiddler=<<site.value footerTemplate>> $mode="block" $output="text/plain"/>`
+      </div>
+    </footer>
+`    <%if [<site.value bodyMarkupTiddler>!is[blank]] %>
+        <$transclude $tiddler=<<site.value bodyMarkupTiddler>> $mode="block" $output="text/plain"/>
+    <%endif%>
+    <%if [<page.value bodyMarkupTiddler>!is[blank]] %>
+        <$transclude $tiddler=<<page.value bodyMarkupTiddler>> $mode="block" $output="text/plain"/>
+    <%endif%>
+`
+  </body>
+</html>
+`
+</$let>

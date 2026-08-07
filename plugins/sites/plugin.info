@@ -1,0 +1,10 @@
+{
+	"title": "$:/plugins/sq/sites",
+	"name": "Static Websites",
+	"description": "Framework for rendering static sites",
+	"author": "Saq Imtiaz",
+	"core-version": ">=5.4.0",
+	"plugin-priority": 0,
+	"list": "",
+	"version": "1.0.0"
+}
