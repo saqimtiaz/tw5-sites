@@ -57,6 +57,15 @@ cp -r "$SECURE_CONTACT_DIR/." "$VENDOR_DIR/"
 
 echo "Rendering site..."
 
+echo "Framework plugin: $FRAMEWORK_ROOT/plugins/sites"
+
+if [ -f "$FRAMEWORK_ROOT/plugins/sites/plugin.info" ]; then
+  echo "✓ plugin.info found"
+else
+  echo "✗ plugin.info NOT FOUND"
+  exit 1
+fi
+
 render \
   "[tag[$:/tags/site-page]siteId[$SITE]]" \
   "[get[path]addprefix[.]addsuffix[index.html]]" \
