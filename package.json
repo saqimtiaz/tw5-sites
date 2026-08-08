@@ -1,6 +1,6 @@
 {
   "name": "tw5-sites",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "A framework for rendering static sites from TiddlyWiki.",
   "bin": {
     "tw5-sites-build": "bin/build.sh"
