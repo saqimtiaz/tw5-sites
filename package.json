@@ -1,5 +1,6 @@
 {
   "name": "tw5-sites",
+  "type": "module",
   "version": "1.0.11",
   "description": "A framework for rendering static sites from TiddlyWiki.",
   "bin": {
@@ -12,7 +13,7 @@
   ],
   "author": "Saq Imtiaz",
   "dependencies": {
-    "secure-contact": "github:saqimtiaz/secure-contact#v1.0.8",
+    "secure-contact": "github:saqimtiaz/secure-contact#v1.0.11",
     "tiddlywiki": "^5.4.1"
   },
   "license": "MIT"

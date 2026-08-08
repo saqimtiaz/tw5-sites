@@ -54,14 +54,7 @@ fi
 
 echo "Copying secure-contact..."
 
-SECURE_CONTACT_DIR="$(npm exec --prefix "$FRAMEWORK_ROOT" -- secure-contact --assets 2>/dev/null)"
-
-if [ ! -d "$SECURE_CONTACT_DIR" ]; then
-  echo "✗ Could not resolve secure-contact assets directory (got: '$SECURE_CONTACT_DIR')"
-  exit 1
-fi
-
-cp -r "$SECURE_CONTACT_DIR/." "$VENDOR_DIR/"
+node "$FRAMEWORK_ROOT/scripts/copy-secure-contact.js" "$VENDOR_DIR"
 
 echo "Rendering site..."
 
