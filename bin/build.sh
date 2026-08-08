@@ -28,7 +28,8 @@ for plugin in "${PLUGINS[@]}"; do
 done
 
 render() {
-  "$FRAMEWORK_ROOT/node_modules/.bin/tiddlywiki" \
+  npm exec --prefix "$FRAMEWORK_ROOT" -- \
+    tiddlywiki \
     "${PLUGIN_ARGS[@]}" \
     "$SITE_ROOT" \
     --output "$OUT_DIR" \
