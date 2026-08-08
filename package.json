@@ -12,7 +12,7 @@
   ],
   "author": "Saq Imtiaz",
   "dependencies": {
-    "secure-contact": "github:saqimtiaz/secure-contact#v1.0.7",
+    "secure-contact": "github:saqimtiaz/secure-contact#v1.0.8",
     "tiddlywiki": "^5.4.1"
   },
   "license": "MIT"
