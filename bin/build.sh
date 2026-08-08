@@ -5,8 +5,13 @@ SITE="${1:?Usage: $0 <siteId> <site-root>}"
 
 SITE_ROOT="${2:?Usage: $0 <siteId> <site-root>}"
 
-FRAMEWORK_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+SCRIPT_PATH="$(realpath "${BASH_SOURCE[0]}")"
+FRAMEWORK_ROOT="$(cd -- "$(dirname -- "$SCRIPT_PATH")/.." && pwd)"
 SITE_ROOT="$(cd -- "$SITE_ROOT" && pwd)"
+
+echo "Building site: $SITE"
+echo "Framework: $FRAMEWORK_ROOT"
+echo "Site root: $SITE_ROOT"
 
 OUT_DIR="$SITE_ROOT/dist"
 VENDOR_DIR="$OUT_DIR/vendor/secure-contact"
@@ -60,7 +65,7 @@ echo "Rendering site..."
 echo "Framework plugin: $FRAMEWORK_ROOT/plugins/sites"
 
 if [ -f "$FRAMEWORK_ROOT/plugins/sites/plugin.info" ]; then
-  echo "✓ plugin.info found"
+  echo "✓ Sites plugin.info found"
 else
   echo "✗ plugin.info NOT FOUND"
   exit 1
