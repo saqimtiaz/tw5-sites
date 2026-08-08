@@ -48,18 +48,11 @@ fi
 
 echo "Copying secure-contact..."
 
-SECURE_CONTACT_DIR="$FRAMEWORK_ROOT/node_modules/secure-contact"
+SECURE_CONTACT_DIR="$(
+  npm exec --prefix "$FRAMEWORK_ROOT" -- secure-contact --assets
+)"
 
-if [ ! -d "$SECURE_CONTACT_DIR/src" ]; then
-  echo "Error: secure-contact was not found at:"
-  echo "  $SECURE_CONTACT_DIR"
-  echo "Make sure tw5-sites dependencies have been installed."
-  exit 1
-fi
-
-cp -r \
-  "$SECURE_CONTACT_DIR/src/." \
-  "$VENDOR_DIR/"
+cp -r "$SECURE_CONTACT_DIR/." "$VENDOR_DIR/"
 
 echo "Rendering site..."
 
